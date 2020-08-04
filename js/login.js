@@ -6,7 +6,7 @@ onSignIn();
 function onSignIn(googleUser) {
     var profile = googleUser.getBasicProfile();
 
-    if (!null(profile.getId())) {
+    if (profile.getId()) {
         location.href = 'index.html';
     }
 }
