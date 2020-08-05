@@ -45,18 +45,3 @@ var getJSONData = function (url) {
 //elementos HTML presentes.
 document.addEventListener("DOMContentLoaded", function (e) {
 });
-
-// Cerrar sesion Google
-window.addEventListener('unload', function (e) {
-  function signOut() {
-    var auth2 = gapi.auth2.getAuthInstance();
-    auth2.signOut().then(function () {
-      console.log('Sesion cerrada.');
-    });
-  }
-
-  if (typeof gapi !== 'undefined') {
-    signOut();
-  }
-
-});
