@@ -10,7 +10,6 @@ function onSignIn(googleUser) {
         location.href = 'index.html';
     }
 }
-
 document.addEventListener("DOMContentLoaded", function (e) {
 
 });
