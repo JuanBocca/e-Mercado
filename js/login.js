@@ -7,9 +7,17 @@ function onSignIn(googleUser) {
     var profile = googleUser.getBasicProfile();
 
     if (profile.getId()) {
+        signOut();
         location.href = 'index.html';
     }
 }
+
+function signOut() {
+    var auth2 = gapi.auth2.getAuthInstance();
+
+    auth2.signOut();
+}
+
 
 document.addEventListener("DOMContentLoaded", function (e) {
 
