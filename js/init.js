@@ -55,5 +55,8 @@ window.addEventListener('unload', function (e) {
     });
   }
 
-  signOut();
+  if (typeof gapi !== 'undefined') {
+    signOut();
+  }
+
 });
