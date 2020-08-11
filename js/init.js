@@ -44,4 +44,10 @@ var getJSONData = function (url) {
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
 document.addEventListener("DOMContentLoaded", function (e) {
+  let currentURL = document.location.href;
+  if (!currentURL.includes('login.html')) {
+    if (!sessionStorage.getItem('id')) {
+      location.href = 'login.html';
+    }
+  }
 });
