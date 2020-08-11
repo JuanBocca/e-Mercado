@@ -29,4 +29,10 @@ document.addEventListener("DOMContentLoaded", function (e) {
     if (sessionStorage.getItem('id')) {
         location.href = 'index.html';
     }
+
+    let form = document.querySelector('.signin');
+    form.addEventListener('submit', function () {
+        let name = document.querySelector('#inputEmail').value;
+        sessionStorage.setItem('id', name);
+    });
 });
