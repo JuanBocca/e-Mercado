@@ -13,7 +13,7 @@
   background-color: #53C0FB;
   background: url('../img/cover_back.png');
   background-size: cover;
-  background-position: center;
+  background-position: -110px;
   background-repeat: no-repeat;
   color: black;
   font-weight: bold;
@@ -23,6 +23,11 @@
   .jumbotron {
     padding-top: 6rem;
     padding-bottom: 6rem;
+  }
+}
+@media (min-width: 1210px) {
+  .jumbotron {
+    background-position: center !important;
   }
 }
 
