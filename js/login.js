@@ -32,7 +32,9 @@ document.addEventListener("DOMContentLoaded", function (e) {
 
     let form = document.querySelector('.signin');
     form.addEventListener('submit', function () {
-        let name = document.querySelector('#inputEmail').value;
-        sessionStorage.setItem('id', name);
+        let name = document.querySelector('#inputName').value;
+        let email = document.querySelector('#inputEmail').value;
+        sessionStorage.setItem('id', email);
+        sessionStorage.setItem('name', name);
     });
 });

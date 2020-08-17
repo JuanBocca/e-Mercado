@@ -48,6 +48,10 @@ document.addEventListener("DOMContentLoaded", function (e) {
   if (!currentURL.includes('login.html')) {
     if (!sessionStorage.getItem('id')) {
       location.href = 'login.html';
+    } else {
+      let name = sessionStorage.getItem('name');
+      let userName = document.querySelector('#userName');
+      userName.innerHTML = 'Hola, ' + name + '!';
     }
   }
 });

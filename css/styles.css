@@ -1,3 +1,6 @@
+#userName {
+  font-weight: bold;
+}
 .jumbotron, .card-body, .container, .site-header{
     font-family: 'Raleway', serif !important;
 }
