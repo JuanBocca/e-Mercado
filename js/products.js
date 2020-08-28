@@ -44,8 +44,8 @@ function showProductsList() {
     for (let i = 0; i < currentProductsArray.length; i++) {
         let product = currentProductsArray[i];
 
-        if (((minCount == undefined) || (minCount != undefined && parseInt(product.soldCount) >= minCount)) &&
-            ((maxCount == undefined) || (maxCount != undefined && parseInt(product.soldCount) <= maxCount))) {
+        if (((minCount == undefined) || (minCount != undefined && parseInt(product.cost) >= minCount)) &&
+            ((maxCount == undefined) || (maxCount != undefined && parseInt(product.cost) <= maxCount))) {
 
             htmlContentToAppend += `
             <a href="product-info.html" class="list-group-item list-group-item-action">
@@ -56,7 +56,10 @@ function showProductsList() {
                     <div class="col">
                         <div class="d-flex w-100 justify-content-between">
                             <h4 class="mb-1 name">`+ product.name + `</h4>
-                            <small class="text-muted">` + product.soldCount + ` vendidos</small>
+                            <div class="row d-flex flex-column">
+                                <small class="text-muted">` + product.soldCount + ` vendidos</small>
+                                <small class="text-muted">` + product.currency + ' ' + product.cost + `</small>
+                            </div>
                         </div>
                         <p class="mb-1 description">` + product.description + `</p>
                     </div>
