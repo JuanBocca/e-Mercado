@@ -12,10 +12,10 @@ function onSignIn(googleUser) {
     var profile = googleUser.getBasicProfile();
 
     if (profile.getId()) {
-        sessionStorage.setItem('id', profile.getId());
-        sessionStorage.setItem('name', profile.getName());
-        sessionStorage.setItem('img', profile.getImageUrl());
-        sessionStorage.setItem('email', profile.getEmail());
+        localStorage.setItem('id', profile.getId());
+        localStorage.setItem('name', profile.getName());
+        localStorage.setItem('img', profile.getImageUrl());
+        localStorage.setItem('email', profile.getEmail());
 
         // Cerrar sesion Google
         signOut();
@@ -26,7 +26,7 @@ function onSignIn(googleUser) {
 }
 
 document.addEventListener("DOMContentLoaded", function (e) {
-    if (sessionStorage.getItem('id')) {
+    if (localStorage.getItem('id')) {
         location.href = 'index.html';
     }
 
@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
     form.addEventListener('submit', function () {
         let name = document.querySelector('#inputName').value;
         let email = document.querySelector('#inputEmail').value;
-        sessionStorage.setItem('id', email);
-        sessionStorage.setItem('name', name);
+        localStorage.setItem('id', email);
+        localStorage.setItem('name', name);
     });
 });

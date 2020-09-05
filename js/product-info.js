@@ -66,6 +66,32 @@ function fillStars(array, starCont) {
     }
 }
 
+function showRelatedProducts(array) {
+    getJSONData(PRODUCTS_URL).then(function (resultObj) {
+        if (resultObj.status === "ok") {
+            let products = resultObj.data;
+            let htmlContentToAppend = '';
+            let relatedContainer = document.getElementById('relatedProducts');
+
+            for (let i = 0; i < array.length; i++) {
+                let related = array[i];
+
+                htmlContentToAppend += `
+                <div class='card mx-1' style='width: 18rem;'>
+                        <img class='card-img-top' src='${products[related].imgSrc}' alt=''>
+                        <div class='card-body'>
+                            <h5 class='card-title'>${products[related].name}</h5>
+                            <p class='card-text'>${products[related].description}</p>
+                            <a href="#">Ver</a>
+                        </div>
+                    </div>
+                `
+            }
+            relatedContainer.innerHTML = htmlContentToAppend;
+        }
+    });
+}
+
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
@@ -86,6 +112,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
 
             //Muestro las imagenes en forma de galería
             showImagesGallery(product.images);
+            showRelatedProducts(product.relatedProducts);
         }
     });
 
@@ -117,7 +144,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
 
     // Formulario para dejar comentarios
     var nameHTML = document.getElementById('formName');
-    var name = sessionStorage.getItem('name');
+    var name = localStorage.getItem('name');
 
     nameHTML.setAttribute('value', name);
 });

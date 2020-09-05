@@ -46,10 +46,10 @@ var getJSONData = function (url) {
 document.addEventListener("DOMContentLoaded", function (e) {
   let currentURL = document.location.href;
   if (!currentURL.includes('login.html')) {
-    if (!sessionStorage.getItem('id')) {
+    if (!localStorage.getItem('id')) {
       location.href = 'login.html';
     } else {
-      let name = sessionStorage.getItem('name');
+      let name = localStorage.getItem('name');
       let userName = document.querySelector('#userName');
       userName.innerHTML = 'Hola, ' + name + '!';
     }
