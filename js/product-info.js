@@ -3,22 +3,22 @@ var product = {};
 function showImagesGallery(array) {
 
     let htmlContentToAppend = "";
+    let carousel = document.getElementById("productImagesGallery");
 
     for (let i = 0; i < array.length; i++) {
         let imageSrc = array[i];
 
         htmlContentToAppend += `
-        <div class="col-lg-3 col-md-4 col-6">
-            <div class="d-block mb-4 h-100">
-                <img class="img-fluid img-thumbnail" src="` + imageSrc + `" alt="">
-            </div>
+        <div class="carousel-item">
+            <img class="d-block" src="` + imageSrc + `" alt="">
         </div>
-        `
-
-        document.getElementById("productImagesGallery").innerHTML = htmlContentToAppend;
+        `;
     }
+    carousel.innerHTML = htmlContentToAppend;
+    carousel.children[0].classList.add('active');
 }
 
+// Funcion para mostrar comentarios
 function showFeedback(array) {
     let htmlContentToAppend = "";
 
@@ -47,18 +47,21 @@ function showFeedback(array) {
                 <span class="fa fa-star"></span>
             </div>
         </div>
-        `
-
-        document.getElementById('comments').innerHTML = htmlContentToAppend;
+        `;
     }
+    document.getElementById('comments').innerHTML = htmlContentToAppend;
+
     let starCont = document.getElementsByClassName('star-container');
     fillStars(array, starCont);
 }
 
+// Funcion para pintar estrellas
 function fillStars(array, starCont) {
+    // Recorre los contenedores
     for (let i = 0; i < starCont.length; i++) {
         let rate = array[i].score;
 
+        // Recorre las estrellas del contenedor
         for (let check = 0; check < rate; check++) {
             let star = starCont[i].children;
             star[check].classList.add('checked');
@@ -66,6 +69,7 @@ function fillStars(array, starCont) {
     }
 }
 
+// Funcion para mostrar productos relativos
 function showRelatedProducts(array) {
     getJSONData(PRODUCTS_URL).then(function (resultObj) {
         if (resultObj.status === "ok") {
@@ -112,14 +116,17 @@ document.addEventListener("DOMContentLoaded", function (e) {
 
             //Muestro las imagenes en forma de galería
             showImagesGallery(product.images);
+            // Muestra los productos relativos
             showRelatedProducts(product.relatedProducts);
         }
     });
 
     getJSONData(PRODUCT_INFO_COMMENTS_URL).then(function (resultObj) {
         if (resultObj.status === "ok") {
+            // Muestro los comentarios guardados
             showFeedback(resultObj.data);
 
+            // Generar comentario nuevo
             let form = document.getElementById('leaveCommentForm');
             form.addEventListener('submit', function (e) {
                 e.preventDefault();
@@ -136,13 +143,15 @@ document.addEventListener("DOMContentLoaded", function (e) {
                     'user': name,
                     'dateTime': date
                 };
+
+                // Añadir nuevo comentario al array y mostrar comentarios
                 resultObj.data.push(comment);
                 showFeedback(resultObj.data);
             });
         }
     });
 
-    // Formulario para dejar comentarios
+    // Agregar nombre de usuario al form de contacto
     var nameHTML = document.getElementById('formName');
     var name = localStorage.getItem('name');
 

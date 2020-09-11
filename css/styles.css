@@ -148,3 +148,19 @@ a.custom-card:hover {
 .checked {
   color: orange;
 }
+
+/* Foto Perfil */
+#profilePic {
+  width: 40px;
+  border-radius: 50%;
+}
+
+/* Carrusel */
+.carousel-item {
+  height: 450px;
+  background-color: rgb(170, 166, 166);
+}
+.carousel-item img {
+  position: relative;
+  margin: 0 auto;
+}

@@ -10,21 +10,25 @@ var currentSortCriteria = undefined;
 var minCount = undefined;
 var maxCount = undefined;
 
+// Funcion que ordena el listado de productos
 function sortProducts(criteria, array) {
     let result = [];
     if (criteria === ORDER_ASC_BY_PRICE) {
+        // Por precio ascendente
         result = array.sort(function (a, b) {
             if (a.cost < b.cost) { return 1; }
             if (a.cost > b.cost) { return -1; }
             return 0;
         });
     } else if (criteria === ORDER_DESC_BY_PRICE) {
+        // Por precio descendente
         result = array.sort(function (a, b) {
             if (a.cost > b.cost) { return 1; }
             if (a.cost < b.cost) { return -1; }
             return 0;
         });
     } else if (criteria === ORDER_BY_SOLD_COUNT) {
+        // Por relevancia
         result = array.sort(function (a, b) {
             let aCount = parseInt(a.soldCount);
             let bCount = parseInt(b.soldCount);
@@ -38,6 +42,7 @@ function sortProducts(criteria, array) {
     return result;
 }
 
+// Funcion que muestra la lista de productos
 function showProductsList() {
 
     let htmlContentToAppend = "";
@@ -67,22 +72,24 @@ function showProductsList() {
             </a>
             `
         }
-
-        document.getElementById("prod-list-container").innerHTML = htmlContentToAppend;
     }
+    document.getElementById("prod-list-container").innerHTML = htmlContentToAppend;
 
+    // Filtrar por nombre o descripcion mientras escribe.
     let search = document.querySelector('#searchField');
     search.addEventListener('input', function () {
         let filter = search.value.toUpperCase();
         let output = document.querySelector('#prod-list-container');
         var prod = output.getElementsByTagName('a');
 
+        // Recorrer todos los 'a'
         for (let i = 0; i < prod.length; i++) {
             let name = prod[i].querySelector('.name');
             let description = prod[i].querySelector('.description');
             let txtName = name.innerHTML;
             let txtDesc = description.innerHTML;
 
+            // Si coincide la busqueda lo mantiene, sino lo oculta
             if (txtName.toUpperCase().indexOf(filter) > -1 || txtDesc.toUpperCase().indexOf(filter) > -1) {
                 prod[i].style.display = "";
             } else {

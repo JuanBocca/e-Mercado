@@ -37,11 +37,17 @@
         <li class="nav-item">
           <a class="nav-link py-2 d-md-inline-block" href="sell.html">Vender</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link py-2 d-md-inline-block" href="cart.html">Mi carrito</a>
-        </li>
         <li class="nav-item active">
-          <a id="userName" class="nav-link py-2 d-md-inline-block" href="my-profile.html"></a>
+          <div class="dropdown d-md-inline-block">
+            <a href="#" id="userName" class="btn btn-secondary dropdown-toggle" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false"></a>
+            <div class="dropdown-menu" aria-labelledby="userName">
+              <a href="cart.html" class="dropdown-item">Mi Carrito</a>
+              <a href="my-profile.html" class="dropdown-item">Mi Perfil</a>
+              <a href="#" id="logOut" class="dropdown-item">Cerrar Sesión</a>
+            </div>
+          </div>
+          <img src="" id="profilePic">
         </li>
       </ul>
     </div>

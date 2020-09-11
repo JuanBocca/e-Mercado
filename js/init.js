@@ -44,6 +44,7 @@ var getJSONData = function (url) {
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
 document.addEventListener("DOMContentLoaded", function (e) {
+  // Verifica en todas las paginas si el usuario se logueo.
   let currentURL = document.location.href;
   if (!currentURL.includes('login.html')) {
     if (!localStorage.getItem('id')) {
@@ -52,6 +53,21 @@ document.addEventListener("DOMContentLoaded", function (e) {
       let name = localStorage.getItem('name');
       let userName = document.querySelector('#userName');
       userName.innerHTML = 'Hola, ' + name + '!';
+      let img = localStorage.getItem('img');
+      let picContainer = document.querySelector('#profilePic');
+
+      // Ademas verifica si tiene imagen o no
+      if (img) {
+        picContainer.setAttribute('src', img);
+      } else {
+        picContainer.parentNode.removeChild(picContainer);
+      }
     }
+
+    let logOutBtn = document.querySelector('#logOut');
+    logOutBtn.addEventListener('click', function () {
+      localStorage.clear();
+      location.reload();
+    })
   }
 });

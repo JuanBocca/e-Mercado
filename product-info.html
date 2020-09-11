@@ -31,17 +31,23 @@
         <li class="nav-item">
           <a class="nav-link py-2 d-md-inline-block" href="categories.html">Categorías</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item active">
           <a class="nav-link py-2 d-md-inline-block" href="products.html">Productos</a>
         </li>
         <li class="nav-item">
           <a class="nav-link py-2 d-md-inline-block" href="sell.html">Vender</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link py-2 d-md-inline-block" href="cart.html">Mi carrito</a>
-        </li>
         <li class="nav-item active">
-          <a id="userName" class="nav-link py-2 d-md-inline-block" href="my-profile.html"></a>
+          <div class="dropdown d-md-inline-block">
+            <a href="#" id="userName" class="btn btn-secondary dropdown-toggle" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false"></a>
+            <div class="dropdown-menu" aria-labelledby="userName">
+              <a href="cart.html" class="dropdown-item">Mi Carrito</a>
+              <a href="my-profile.html" class="dropdown-item">Mi Perfil</a>
+              <a href="#" id="logOut" class="dropdown-item">Cerrar Sesión</a>
+            </div>
+          </div>
+          <img src="" id="profilePic">
         </li>
       </ul>
     </div>
@@ -64,7 +70,17 @@
           seleccionado previamente, siempre se visualizará el presente: <strong>Chevrolet Onix Joy</strong>.</p>
       </div>
       <hr class="my-3">
-      <div class="row text-center text-lg-left pt-2" id="productImagesGallery"></div>
+      <div class="carousel slide mb-3" id="carousel" data-ride="carousel">
+        <div class="carousel-inner" id="productImagesGallery"></div>
+        <a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carousel" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
       <dl>
         <dt>Descripción</dt>
         <dd>
@@ -93,11 +109,11 @@
           <label for="formRate" class="sr-only">Puntuación</label>
           <select id="formRate" class="form-control mb-2" required>
             <option value="">Puntúa este producto</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
+            <option value="1">&#9733;</option>
+            <option value="2">&#9733;&#9733;</option>
+            <option value="3">&#9733;&#9733;&#9733;</option>
+            <option value="4">&#9733;&#9733;&#9733;&#9733;</option>
+            <option value="5">&#9733;&#9733;&#9733;&#9733;&#9733;</option>
           </select>
 
           <label for="formMessage" class="sr-only">Comentario</label>
