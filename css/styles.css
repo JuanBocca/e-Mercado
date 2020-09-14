@@ -156,11 +156,20 @@ a.custom-card:hover {
 }
 
 /* Carrusel */
+@media (min-width: 768px) {
+  .carousel-item {
+    height: 450px !important;
+  }
+  .carousel-item img {
+    width: auto !important;
+  };
+}
 .carousel-item {
-  height: 450px;
+  height: auto;
   background-color: rgb(170, 166, 166);
 }
 .carousel-item img {
   position: relative;
   margin: 0 auto;
+  width: 100%;
 }
