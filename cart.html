@@ -35,6 +35,7 @@
 </head>
 
 <body>
+  <!-- Nav -->
   <nav class="navbar navbar-expand-md site-header sticky-top py-3 navbar-dark bg-dark">
     <a href="index.html" class="navbar-brand d-md-none">e-Mercado</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar"
@@ -70,7 +71,7 @@
       </ul>
     </div>
   </nav>
-  <div class="container p-5">
+  <!-- <div class="container p-5">
     <div class="alert alert-danger" role="alert" style="position: relative; width:auto; top: 0;">
       <h4 class="alert-heading">¡A trabajar! :)</h4>
       <p>Esta sección corresponde a: Entrega 5 (Fecha de entrega: 11/10/2020) y Entrega 6 (Fecha de entrega:
@@ -78,7 +79,88 @@
       <hr>
       <p class="mb-0">Para saber qué debes hacer, fijate en la actividad en CREA correspondiente a esta entrega.</p>
     </div>
-  </div>
+  </div> -->
+  <!-- Realizar una petición web a una URL donde se encuentra un carrito ya con un producto precargado. Mostrar en 
+    HTML la información respecto al mismo, y los elementos gráficos que involucran al carrito 
+    (cantidad de productos, subtotal, envío, etc). -->
+  <main role="main" class="pb-5">
+    <div class="text-center p-4">
+      <h2>Carrito</h2>
+      <p class="lead">Verás aquí los productos que hayas agregado al carrito</p>
+    </div>
+    <div class="container">
+      <div class="row">
+        <!-- Tabla con listado de productos -->
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th scope="col">Producto</th>
+              <th scope="col">Precio unitario</th>
+              <th scope="col">Cantidad</th>
+              <th scope="col">Subtotal</th>
+            </tr>
+          </thead>
+          <tbody id="cart-list-container">
+          </tbody>
+        </table>
+      </div>
+      <div class="row">
+        <div class="col-4">
+          <div class="card my-3 p-0">
+            <div class="card-header">
+              <h5 class="card-title">
+                Tipo de Envío
+              </h5>
+            </div>
+            <div class="card-body">
+              <div class="card-text">
+                <form action="#">
+                  <div class="alert alert-danger" id="error" role="alert">
+                    Debes seleccionar un tipo de envío para continuar!
+                  </div>
+                  <dl id="selectShipping">
+                    <dt>
+                      <input type="radio" name="choosedShip" id="local" value="10">
+                      <label for="local">Retiro en local</label>
+                    </dt>
+                    <dd>$0</dd>
+                    <dt>
+                      <input type="radio" name="choosedShip" id="area" value="20">
+                      <label for="area">Envío dentro de Montevideo</label>
+                    </dt>
+                    <dd>$0</dd>
+                    <dt>
+                      <input type="radio" name="choosedShip" id="ship" value="30">
+                      <label for="ship">Envío Standard</label>
+                    </dt>
+                    <dd id="shipCost"></dd>
+                  </dl>
+                  <input type="submit" class="btn btn-outline-secondary btn-block" value="Elegir tipo de envío"
+                    id="selectCost">
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-8">
+          <div class="card my-3" id="totalCost">
+            <div class="card-header">
+              <h5 class="card-title text-center">
+                Proceder a checkout
+              </h5>
+            </div>
+            <div class="card-body">
+              <div class="card-text text-center">
+                <h6>Costo total</h6>
+                <div id="cost"></div>
+                <input type="button" class="btn btn-outline-primary btn-block mt-3" value="Continuar">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
   <div id="spinner-wrapper">
     <div class="lds-ring">
       <div></div>

@@ -43,31 +43,51 @@ var getJSONData = function (url) {
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
-document.addEventListener("DOMContentLoaded", function (e) {
-  // Verifica en todas las paginas si el usuario se logueo.
+document.addEventListener("DOMContentLoaded", function () {
+
+  // Ejecuta en todas las paginas (menos login.html)
   let currentURL = document.location.href;
   if (!currentURL.includes('login.html')) {
+    let userName = document.querySelector('#userName');
+    let picContainer = document.querySelector('#profilePic');
+
+    // Verifica si no existe datos de usuario
     if (!localStorage.getItem('id')) {
-      location.href = 'login.html';
+      // Agregar link al li
+      let dropdown = document.getElementsByClassName('dropdown');
+      let li = dropdown[0].parentNode;
+      let a = document.createElement('a');
+      li.appendChild(a);
+
+      // Eliminar dropdown e imagen
+      li.removeChild(dropdown[0]);
+      picContainer.parentNode.removeChild(picContainer);
+
+      // Agregar datos al link
+      a.classList.add('nav-link', 'py-2', 'd-md-inline-block');
+      a.setAttribute('href', 'login.html');
+      a.innerText = 'Iniciar Sesión';
     } else {
+      // Si existen datos de usuario
+
+      // Muestra el nombre de usuario
       let name = localStorage.getItem('name');
-      let userName = document.querySelector('#userName');
       userName.innerHTML = 'Hola, ' + name + '!';
-      let img = localStorage.getItem('img');
-      let picContainer = document.querySelector('#profilePic');
 
       // Ademas verifica si tiene imagen o no
+      let img = localStorage.getItem('img');
       if (img) {
         picContainer.setAttribute('src', img);
       } else {
         picContainer.parentNode.removeChild(picContainer);
       }
-    }
 
-    let logOutBtn = document.querySelector('#logOut');
-    logOutBtn.addEventListener('click', function () {
-      localStorage.clear();
-      location.reload();
-    })
+      // Listener boton cerrar sesión
+      let logOutBtn = document.querySelector('#logOut');
+      logOutBtn.addEventListener('click', function () {
+        localStorage.clear();
+        location.href = 'index.html';
+      });
+    }
   }
 });

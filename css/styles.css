@@ -173,3 +173,10 @@ a.custom-card:hover {
   margin: 0 auto;
   width: 100%;
 }
+
+/* Carrito */
+#error,
+#totalCost {
+  display: none;
+  opacity: 0;
+}
