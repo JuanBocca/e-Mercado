@@ -102,10 +102,20 @@
           </thead>
           <tbody id="cart-list-container">
           </tbody>
+          <tfoot>
+            <tr>
+              <td scope="col"></td>
+              <td scope="col"></td>
+              <td scope="col"></td>
+              <td class="d-flex flex-row-reverse font-weight-bold" id="subtotal"></td>
+            </tr>
+          </tfoot>
         </table>
       </div>
+      <!-- Seleccion de envio y costo total -->
       <div class="row">
-        <div class="col-4">
+        <!-- Seleccion de envio -->
+        <div class="col-lg-4">
           <div class="card my-3 p-0">
             <div class="card-header">
               <h5 class="card-title">
@@ -120,20 +130,20 @@
                   </div>
                   <dl id="selectShipping">
                     <dt>
-                      <input type="radio" name="choosedShip" id="local" value="10">
-                      <label for="local">Retiro en local</label>
+                      <input type="radio" name="choosedShip" id="premium" value="10">
+                      <label for="premium">Premium - 2 a 5 dias (15%)</label>
                     </dt>
-                    <dd>$0</dd>
+                    <dd id="premiumCost"></dd>
                     <dt>
-                      <input type="radio" name="choosedShip" id="area" value="20">
-                      <label for="area">Envío dentro de Montevideo</label>
+                      <input type="radio" name="choosedShip" id="express" value="20">
+                      <label for="express">Express - 5 a 8 dias (7%)</label>
                     </dt>
-                    <dd>$0</dd>
+                    <dd id="expressCost"></dd>
                     <dt>
-                      <input type="radio" name="choosedShip" id="ship" value="30">
-                      <label for="ship">Envío Standard</label>
+                      <input type="radio" name="choosedShip" id="standard" value="30">
+                      <label for="standard">Standard 12 a 15 dias (5%)</label>
                     </dt>
-                    <dd id="shipCost"></dd>
+                    <dd id="standardCost"></dd>
                   </dl>
                   <input type="submit" class="btn btn-outline-secondary btn-block" value="Elegir tipo de envío"
                     id="selectCost">
@@ -142,7 +152,8 @@
             </div>
           </div>
         </div>
-        <div class="col-8">
+        <!-- Costo total -->
+        <div class="col-lg-8">
           <div class="card my-3" id="totalCost">
             <div class="card-header">
               <h5 class="card-title text-center">
@@ -151,9 +162,146 @@
             </div>
             <div class="card-body">
               <div class="card-text text-center">
-                <h6>Costo total</h6>
+                <h6 class="font-weight-bold" style="font-size: 20px;">Resumen de compra</h6>
                 <div id="cost"></div>
-                <input type="button" class="btn btn-outline-primary btn-block mt-3" value="Continuar">
+                <input type="button" class="btn btn-outline-primary btn-block mt-3" value="Continuar"
+                  data-toggle="modal" data-target="#checkoutModal">
+              </div>
+            </div>
+            <!-- checkout modal -->
+            <div class="modal fade" id="checkoutModal" tabindex="-1" role="dialog" aria-labelledby="checkoutModalLabel"
+              aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                  <div class="modal-header border-bottom-0">
+                    <h5 class="modal-title" id="checkoutModalLabel">Checkout</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <!-- Pestañas para procesar pago -->
+                  <ul class="nav nav-tabs" id="checkoutTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                      <a class="nav-link active" id="direction-tab" data-toggle="tab" href="#direction" role="tab"
+                        aria-controls="direction" aria-selected="true">Dirección</a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                      <a class="nav-link" id="payment-tab" data-toggle="tab" href="#payment" role="tab"
+                        aria-controls="payment" aria-selected="false">Método de pago</a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                      <a class="nav-link" id="confirmation-tab" data-toggle="tab" href="#confirmation" role="tab"
+                        aria-controls="confirmation" aria-selected="false">Confirmar</a>
+                    </li>
+                  </ul>
+                  <div class="modal-body">
+                    <div class="tab-content" id="checkoutTabContent">
+                      <!-- Direccion -->
+                      <div class="tab-pane fade show active" id="direction" role="tabpanel"
+                        aria-labelledby="direction-tab">
+                        <form id="checkoutForm">
+                          <div class="form-row">
+                            <div class="form-group px-1">
+                              <label for="street">Calle</label>
+                              <input type="text" name="street" id="calle" class="form-control" required>
+                            </div>
+                            <div class="form-group px-1">
+                              <label for="number">Número</label>
+                              <input type="text" name="number" id="numero" class="form-control">
+                            </div>
+                          </div>
+                          <div class="form-row">
+                            <div class="form-group px-1">
+                              <label for="corner">Esquina</label>
+                              <input type="text" name="corner" id="esquina" class="form-control" required>
+                            </div>
+                            <div class="form-group px-1">
+                              <label for="state">Departamento</label>
+                              <select name="state" id="departamento" class="form-control required" required>
+                                <option value="" selected>Elegir departamento </option>
+                                <option value="1">Artigas</option>
+                                <option value="2">Canelones</option>
+                                <option value="3">Cerro Largo</option>
+                                <option value="4">Colonia</option>
+                                <option value="5">Durazno</option>
+                                <option value="6">Flores</option>
+                                <option value="7">Florida</option>
+                                <option value="8">Lavalleja</option>
+                                <option value="9">Maldonado</option>
+                                <option value="10">Montevideo</option>
+                                <option value="11">Paysandú</option>
+                                <option value="12">Rio Negro</option>
+                                <option value="13">Rivera</option>
+                                <option value="14">Rocha</option>
+                                <option value="15">Salto</option>
+                                <option value="16">San José</option>
+                                <option value="17">Soriano</option>
+                                <option value="18">Tacuarembó</option>
+                                <option value="19">Treinta y Tres</option>
+                              </select>
+                            </div>
+                          </div>
+                      </div>
+                      <!-- Metodo de pago -->
+                      <div class="tab-pane fade" id="payment" role="tabpanel" aria-labelledby="payment-tab">
+                        <dl>
+                          <!-- Tarjeta -->
+                          <dt>
+                            <input type="radio" name="payment" id="cardMethod" value="1">
+                            <label for="cardMethod">Tarjeta Débito/Crédito</label>
+                          </dt>
+                          <dd id="cardForm">
+                            <div class="form-row">
+                              <div class="form-group px-1">
+                                <label for="number">Número de la tarjeta</label>
+                                <input type="text" name="number" id="cardNum" minlength="18" maxlength="19"
+                                  class="form-control" required>
+                              </div>
+                              <div class="form-group px-1">
+                                <label for="owner">Nombre del titular</label>
+                                <input type="text" name="owner" id="cardOwner"
+                                  class="form-control" required>
+                              </div>
+                            </div>
+                            <div class="form-row">
+                              <div class="form-group px-1">
+                                <label for="date">Vencimiento</label>
+                                <input type="text" name="date" id="cardDate" minlength="5" maxlength="5"
+                                  class="form-control" required>
+                              </div>
+                              <div class="form-group px-1">
+                                <label for="owner">Código de seguridad</label>
+                                <input type="text" name="code" id="cardCode" minlength="3" maxlength="3"
+                                  class="form-control" required>
+                              </div>
+                            </div>
+                          </dd>
+                          <!-- Bancario -->
+                          <dt>
+                            <input type="radio" name="payment" id="bankMethod" value="2">
+                            <label for="bankMethod">Transferencia bancaria</label>
+                          </dt>
+                          <dd id="bankForm">
+                            <div class="form-group px-1">
+                              <label for="account">Número de cuenta</label>
+                              <input type="text" name="account" id="accountNum" minlength="20" maxlength="20"
+                                class="form-control" required>
+                            </div>
+                          </dd>
+                        </dl>
+                      </div>
+                      <!-- Confirmar -->
+                      <div class="tab-pane fade" id="confirmation" role="tabpanel" aria-labelledby="confirmation-tab">
+                        ...</div>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Volver</button>
+                    <input type="submit" class="btn btn-primary" data-toggle="modal" data-target="#checkoutModal2"
+                      value="Continuar">
+                  </div>
+                  </form>
+                </div>
               </div>
             </div>
           </div>

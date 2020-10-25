@@ -173,10 +173,28 @@ a.custom-card:hover {
   margin: 0 auto;
   width: 100%;
 }
+.aProd {
+  color: #000000;
+}
+.aProd:hover {
+  color: #000000;
+  text-decoration: none;
+}
 
 /* Carrito */
 #error,
 #totalCost {
   display: none;
   opacity: 0;
+}
+.deleteProduct {
+  font-size: 25px;
+  color: #ff0000;
+}
+.deleteProduct:hover {
+  cursor: pointer;
+}
+#cardForm,
+#bankForm {
+  display: none;
 }
