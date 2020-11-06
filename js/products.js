@@ -52,21 +52,38 @@ function showProductsList() {
         if (((minCount == undefined) || (minCount != undefined && parseInt(product.cost) >= minCount)) &&
             ((maxCount == undefined) || (maxCount != undefined && parseInt(product.cost) <= maxCount))) {
 
+            // htmlContentToAppend += `
+            // <a href="product-info.html" class="list-group-item list-group-item-action">
+            //     <div class="row">
+            //         <div class="col-3">
+            //             <img src="` + product.imgSrc + `" alt="` + product.description + `" class="img-thumbnail">
+            //         </div>
+            //         <div class="col">
+            //             <div class="d-flex w-100 justify-content-between">
+            //                 <h4 class="mb-1 name">`+ product.name + `</h4>
+            //                 <div class="row d-flex flex-column">
+            //                     <small class="text-muted">` + product.soldCount + ` vendidos</small>
+            //                     <small class="text-muted">` + product.currency + ' ' + product.cost + `</small>
+            //                 </div>
+            //             </div>
+            //             <p class="mb-1 description">` + product.description + `</p>
+            //         </div>
+            //     </div>
+            // </a>
+            // `
+
             htmlContentToAppend += `
-            <a href="product-info.html" class="list-group-item list-group-item-action">
-                <div class="row">
-                    <div class="col-3">
-                        <img src="` + product.imgSrc + `" alt="` + product.description + `" class="img-thumbnail">
-                    </div>
-                    <div class="col">
-                        <div class="d-flex w-100 justify-content-between">
-                            <h4 class="mb-1 name">`+ product.name + `</h4>
-                            <div class="row d-flex flex-column">
-                                <small class="text-muted">` + product.soldCount + ` vendidos</small>
-                                <small class="text-muted">` + product.currency + ' ' + product.cost + `</small>
+            <a href="product-info.html" class="col-md-4 aProd">
+                <div class="card mb-4">
+                    <img src="` + product.imgSrc + `" alt="` + product.description + `" class="card-img-top">
+                    <div class="card-body">
+                        <p class="card-text">
+                            <div class="d-inline-block mb-1">
+                                <span class="h4 mb-1 name">`+ product.name + `</span>
+                                <span class="h5"> - ` + product.currency + ' ' + product.cost + `</span>
                             </div>
-                        </div>
-                        <p class="mb-1 description">` + product.description + `</p>
+                            <p class="mb-1 description">` + product.description + `</p>
+                        </p>
                     </div>
                 </div>
             </a>

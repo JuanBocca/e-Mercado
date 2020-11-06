@@ -52,7 +52,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let picContainer = document.querySelector('#profilePic');
 
     // Verifica si no existe datos de usuario
-    if (!localStorage.getItem('id')) {
+    if (!localStorage.getItem('session')) {
       // Agregar link al li
       let dropdown = document.getElementsByClassName('dropdown');
       let li = dropdown[0].parentNode;
@@ -71,13 +71,13 @@ document.addEventListener("DOMContentLoaded", function () {
       // Si existen datos de usuario
 
       // Muestra el nombre de usuario
-      let name = localStorage.getItem('name');
-      userName.innerHTML = 'Hola, ' + name + '!';
+      let userStr = localStorage.getItem('user');
+      let user = JSON.parse(userStr);
+      userName.innerHTML = 'Hola, ' + user.username + '!';
 
       // Ademas verifica si tiene imagen o no
-      let img = localStorage.getItem('img');
-      if (img) {
-        picContainer.setAttribute('src', img);
+      if (user.img) {
+        picContainer.setAttribute('src', user.img);
       } else {
         picContainer.parentNode.removeChild(picContainer);
       }
@@ -85,7 +85,7 @@ document.addEventListener("DOMContentLoaded", function () {
       // Listener boton cerrar sesión
       let logOutBtn = document.querySelector('#logOut');
       logOutBtn.addEventListener('click', function () {
-        localStorage.clear();
+        localStorage.removeItem('session');
         location.href = 'index.html';
       });
     }

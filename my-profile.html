@@ -71,12 +71,58 @@
     </div>
   </nav>
   <div class="container p-5">
-    <div class="alert alert-danger" role="alert" style="position: relative; width:auto; top: 0;">
+    <!-- <div class="alert alert-danger" role="alert" style="position: relative; width:auto; top: 0;">
       <h4 class="alert-heading">¡A trabajar! :)</h4>
       <p>Esta sección corresponde a: Entrega 7 (Fecha de entrega: 8/11/202020) -> Punto 1 y 2.</p>
       <hr>
       <p class="mb-0">Para saber qué debes hacer, fijate en la actividad en CREA correspondiente a esta entrega.</p>
-    </div>
+    </div> -->
+    <h1 class="mb-5">Perfíl de Usuario</h1>
+    <form id="profileForm">
+
+      <div class="alert alert-danger" id="error" role="alert"></div>
+
+      <input type="submit" value="Editar" class="btn btn-outline-primary float-right" id="editBtn">
+      
+      <div class="move-right justify-content-around mb-4 d-none">
+        <div class="drop-zone">
+          <span class="drop-zone_prompt">
+            Suelta una imagen aquí o haz click para cargar
+          </span>
+          <input type="file" name="inputFile" class="drop-zone_input">
+        </div>
+      </div>
+
+      <div class="move-items">
+        <div class="form-group">
+          <label for="name">Nombre</label>
+          <input type="text" class="form-control-plaintext" disabled id="name" placeholder="Nombre" title="Ingresa tu nombre">
+        </div>
+        <div class="form-group">
+          <label for="surbname">Apellido</label>
+          <input type="text" class="form-control-plaintext" disabled id="surname" placeholder="Apellido" title="Ingresa tu apellido">
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label for="username">Nombre de usuario</label>
+        <input type="text" class="form-control-plaintext" disabled id="username" placeholder="Usuario" title="Ingresa tu nombre de usuario">
+      </div>
+      <div class="form-group">
+        <label for="age">Edad</label>
+        <input type="text" class="form-control-plaintext" disabled id="age" placeholder="Edad" title="Ingresa tu edad">
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" class="form-control-plaintext" disabled id="email" placeholder="Email" title="Ingresa tu email">
+      </div>
+      <div class="form-group">
+        <label for="phone">Teléfono de contacto</label>
+        <input type="tel" class="form-control-plaintext" disabled id="phone" placeholder="Teléfono" title="Ingresa tu telefono">
+      </div>
+      <input type="submit" value="Guardar" class="btn btn-outline-success float-right ml-2 d-none" id="saveBtn">
+      <input type="submit" value="Cancelar" class="btn btn-outline-danger float-right d-none" id="cancelBtn">
+    </form>
   </div>
   <footer class="text-muted bg-light">
     <div class="container">
